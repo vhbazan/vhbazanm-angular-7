@@ -2,6 +2,7 @@
 <a [routerLink]="['/post/new']" >New Post</a>
 <div class="card" style="width: 18rem;" *ngFor="let post of postList">
   <img class="card-img-top" src="..." alt="{{post.title}}">
+  <a (click)="deletePost(post.id)"><span class="oi oi-circle-x" title="close" aria-hidden="true"></span></a>
   <div class="card-body">
     <h5 class="card-title">{{post.title}}</h5>
     <p class="card-text">{{post.description}}</p>

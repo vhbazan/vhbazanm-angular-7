@@ -14,15 +14,26 @@ export class PostListComponent implements OnInit {
   constructor(private readonly postService: PostService) { }
 
   ngOnInit() {
-
     this.postService.getAllPosts().subscribe( result => {
-      console.log('result', result);
       this.postList = result.content;
     },
     err => {
       console.log('ERROR', err);
     });
 
+  }
+
+  deletePost(id: string): void {
+    this.postService.deletePost(id).subscribe(
+      response => {
+        this.postList = this.postList.filter(postItem => {
+          return postItem.id !== id;
+        });
+      },
+      err => {
+        console.log('ERROR:', err);
+      }
+    );
   }
 
 }

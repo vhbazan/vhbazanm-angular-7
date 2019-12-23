@@ -39,4 +39,14 @@ export class PostService {
       );
   }
 
+  deletePost(id: string): Observable<Post> {
+    return this.http.delete(`${this.postEndpoint}/post/${id}`, {headers: this.headers})
+    .pipe(
+      map(
+        response => {
+          return response;
+        }
+      )
+    );
+  }
 }
