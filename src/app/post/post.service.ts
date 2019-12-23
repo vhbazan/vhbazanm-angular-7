@@ -1,3 +1,4 @@
+import { Post } from './../shared/models/Post';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
@@ -16,16 +17,25 @@ export class PostService {
   constructor(private readonly http: HttpClient) { }
 
 
-getAllPosts(): Observable<any> {
+  getAllPosts(): Observable<any> {
 
-  return this.http.get(`${this.postEndpoint}/post`, {headers: this.headers} )
-  .pipe(
-    map(
-      response => {
-        return response;
-      }
-    )
-  );
-}
+    return this.http.get(`${this.postEndpoint}/post`, {headers: this.headers} )
+    .pipe(
+      map(
+        response => {
+          return response;
+        }
+      )
+    );
+  }
+
+  savePost(newPost: Post): Observable<Post> {
+    return this.http.post<Post>(`${this.postEndpoint}/post`, newPost)
+      .pipe(
+        map(result => {
+          return result;
+        })
+      );
+  }
 
 }
