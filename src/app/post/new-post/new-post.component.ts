@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { PostService } from './../post.service';
 import { Post } from './../../shared/models/Post';
 import { Component, OnInit } from '@angular/core';
@@ -8,18 +9,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-post.component.scss']
 })
 export class NewPostComponent implements OnInit {
-  post: Post = {};
+  post: Post;
 
-  constructor(private readonly postService: PostService) { }
+  constructor(private readonly postService: PostService,
+              private readonly route: Router) {
+    this.post = {
+      tags: []
+    };
+  }
 
   ngOnInit() {
   }
 
-  savePost() {
+  savePost(event) {
+    event.preventDefault();
     console.log('post being saved');
     const post: Post = {...this.post,
-      id: '5544',
-      tags: ['tag1', 'tag2'],
       createdBy: 'vhbazanm',
       createdAt: new Date()
     };
@@ -27,10 +32,17 @@ export class NewPostComponent implements OnInit {
 
     this.postService.savePost(post).subscribe( response => {
       console.log('saved correctly', response);
+      // ToDo: Display success message
+      this.route.navigate(['/posts']);
     },
     err => {
       console.log('ERROR', err);
     });
+  }
+
+  addTag($event): void {
+    this.post.tags.push($event.target.value);
+    $event.target.value = '';
   }
 
 }
