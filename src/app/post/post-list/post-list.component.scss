@@ -1,15 +1,19 @@
 .post-list-container {
-    .card {
-        -webkit-box-orient: horizontal;
-        /* display: flex;
-        flex-direction: row; */
-        img {
-          width: 90%;
-        }
-        span {
-            width: 5%;
-            height: 10%;
-            padding: 0.3rem;
+    
+    .cards-container {
+
+        margin: 0.3rem;
+        
+        .card {
+            margin: 0.5rem;
+            img {
+            width: 90%;
+            }
+            span {
+                width: 5%;
+                height: 10%;
+                padding: 0.3rem;
+            }
         }
     }
 }
