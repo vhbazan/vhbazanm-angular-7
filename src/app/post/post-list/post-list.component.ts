@@ -1,3 +1,4 @@
+import { Post } from './../../shared/models/Post';
 import { PostService } from '../post.service';
 import { Component, OnInit } from '@angular/core';
 import { post } from 'selenium-webdriver/http';
@@ -9,17 +10,18 @@ import { post } from 'selenium-webdriver/http';
 })
 export class PostListComponent implements OnInit {
 
-  result: any;
+  postList: Post[];
   constructor(private readonly postService: PostService) { }
 
   ngOnInit() {
 
     this.postService.getAllPosts().subscribe( result => {
-      this.result = result;
+      console.log('result', result);
+      this.postList = result.content;
     },
     err => {
       console.log('ERROR', err);
-    })
+    });
 
   }
 

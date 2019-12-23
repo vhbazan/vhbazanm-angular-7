@@ -30,9 +30,10 @@ export class PostService {
   }
 
   savePost(newPost: Post): Observable<Post> {
-    return this.http.post<Post>(`${this.postEndpoint}/post`, newPost)
+    return this.http.post<Post>(`${this.postEndpoint}/post`, newPost, {headers: this.headers})
       .pipe(
         map(result => {
+          console.log('result', result);
           return result;
         })
       );

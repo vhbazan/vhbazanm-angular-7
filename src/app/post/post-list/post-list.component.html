@@ -1,4 +1,13 @@
-<p>
-  post-list works!
-</p>
-{{result | json }}
+<div class="post-list-container">
+<a [routerLink]="['/post/new']" >New Post</a>
+<div class="card" style="width: 18rem;" *ngFor="let post of postList">
+  <img class="card-img-top" src="..." alt="{{post.title}}">
+  <div class="card-body">
+    <h5 class="card-title">{{post.title}}</h5>
+    <p class="card-text">{{post.description}}</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+
+
+</div>
