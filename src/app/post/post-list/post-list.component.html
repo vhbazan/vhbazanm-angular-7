@@ -3,12 +3,16 @@
   <a [routerLink]="['/post/new']" class="btn btn-primary" >New Post</a>
   <div class="cards-container">
     <div class="card" *ngFor="let post of postList">
-      <img class="card-img-top" src="..." alt="{{post.title}}">
-      <a (click)="deletePost(post.id)"><span class="oi oi-circle-x" title="close" aria-hidden="true"></span></a>
+      <div class="card-header">
+          <h5 class="card-title">{{post.title}}</h5>
+        <a (click)="deletePost(post.id)" aria-label="delete post">
+          <span class="oi oi-circle-x" title="delete" aria-hidden="true"></span>
+        </a>
+      </div>
       <div class="card-body">
-        <h5 class="card-title">{{post.title}}</h5>
+        <img class="card-img" src="..." alt="{{post.title}}"/>
         <p class="card-text">{{post.description}}</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <a [routerLink]="['/post', post.id]" class="btn btn-primary">Read full post</a>
       </div>
     </div>
   </div>
