@@ -29,12 +29,24 @@ export class PostService {
     );
   }
 
+  getPostById(id: string): Observable<Post> {
+    return this.http.get(`${this.postEndpoint}/post/${id}`, {headers: this.headers})
+    .pipe(
+      map(
+        response => {
+          console.log('response', response);
+          return response;
+        }
+      )
+    );
+  }
+
   savePost(newPost: Post): Observable<Post> {
     return this.http.post<Post>(`${this.postEndpoint}/post`, newPost, {headers: this.headers})
       .pipe(
-        map(result => {
-          console.log('result', result);
-          return result;
+        map(response => {
+          console.log('response', response);
+          return response;
         })
       );
   }
